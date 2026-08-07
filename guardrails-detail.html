@@ -411,6 +411,7 @@
   "use strict";
   var pills = document.querySelectorAll(".phase-pill");
   var sections = document.querySelectorAll(".phase");
+  var phaseNavScroller = document.querySelector(".phase-nav");
 
   if("IntersectionObserver" in window){
     var obs = new IntersectionObserver(function(entries){
@@ -418,7 +419,12 @@
         if(entry.isIntersecting){
           var id = entry.target.id;
           pills.forEach(function(p){
-            p.classList.toggle("current", p.getAttribute("data-phase") === id);
+            var isCurrent = p.getAttribute("data-phase") === id;
+            p.classList.toggle("current", isCurrent);
+            if(isCurrent){
+              var target = p.offsetLeft - (phaseNavScroller.clientWidth - p.offsetWidth) / 2;
+              phaseNavScroller.scrollTo({left: target, behavior: "smooth"});
+            }
           });
         }
       });
