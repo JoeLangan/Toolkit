@@ -199,6 +199,13 @@
     font-size:15px;line-height:1.65;color:var(--ink);min-height:100px;
   }
   .journey-detail strong{color:var(--navy);}
+  .detail-link{
+    display:flex;width:fit-content;align-items:center;gap:6px;margin-top:14px;
+    font-size:13.5px;font-weight:700;color:var(--teal);text-decoration:none;
+  }
+  .detail-link:hover{color:var(--pink);}
+  .detail-link svg{transition:transform .18s ease;}
+  .detail-link:hover svg{transform:translateX(3px);}
 
   .exposure-meter{margin-top:32px;max-width:420px;}
   .exposure-meter-label{display:flex;justify-content:space-between;font-size:12.5px;font-weight:700;color:var(--gray-blue);margin-bottom:8px;text-transform:uppercase;letter-spacing:.04em;}
@@ -517,19 +524,19 @@
   // ---------- Beat 3: guardrails journey ----------
   var STATIONS = [
     {
-      label:'Discover',
+      label:'Discover', anchor:'discover',
       detail:'<strong>You can\'t govern what you can\'t see.</strong> Before policy or controls mean anything, security needs full visibility into what AI is actually running — sanctioned and unsanctioned, chat tools and agents alike — and exactly what data each one can reach. The foundation, not an optional first step.'
     },
     {
-      label:'Contain',
+      label:'Contain', anchor:'contain',
       detail:'<strong>Discovery alone stops nothing in the moment.</strong> While longer-term controls are being built, something has to intercept risk as it happens — data mid-paste into a public tool, a file about to leave through an unsanctioned upload.'
     },
     {
-      label:'Govern Identity',
+      label:'Govern Identity', anchor:'govern-identity',
       detail:'<strong>Every AI agent is an identity.</strong> Least-privilege access, session-bound credentials instead of standing ones, continuous behavioral monitoring for when something acts outside its normal pattern. Usually the phase organizations are least mature in.'
     },
     {
-      label:'Institutionalize',
+      label:'Institutionalize', anchor:'institutionalize',
       detail:'<strong>Tools alone don\'t hold this together.</strong> Somebody owns AI risk as a named accountability. A written acceptable-use policy, and an actual approval path for new AI tools — so the next wave of shadow AI has a sanctioned on-ramp instead of a rule people quietly ignore.'
     }
   ];
@@ -571,7 +578,8 @@
     exposureLabel.textContent = EXPOSURE_LABELS[activeCount];
 
     if (lastActive >= 0){
-      journeyDetail.innerHTML = '<strong class="display" style="display:block;margin-bottom:8px;color:var(--navy);font-size:15px;">' + STATIONS[lastActive].label + '</strong>' + STATIONS[lastActive].detail;
+      journeyDetail.innerHTML = '<strong class="display" style="display:block;margin-bottom:8px;color:var(--navy);font-size:15px;">' + STATIONS[lastActive].label + '</strong>' + STATIONS[lastActive].detail +
+        '<a class="detail-link" href="guardrails-detail.html#' + STATIONS[lastActive].anchor + '">Read the full breakdown<svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>';
     } else {
       journeyDetail.innerHTML = 'Click a stage above to see why it comes where it does.';
     }

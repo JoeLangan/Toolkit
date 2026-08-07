@@ -191,7 +191,13 @@
   }
   .stopped-card .stopped-phase{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;}
   .stopped-card .stopped-day{font-family:ui-monospace,monospace;font-size:11px;color:var(--gray-blue);margin-bottom:8px;display:block;}
-  .stopped-card p{font-size:14px;line-height:1.55;color:var(--ink);margin:0;}
+  .stopped-card p{font-size:14px;line-height:1.55;color:var(--ink);margin:0 0 12px;}
+  .stopped-card .detail-link{
+    display:inline-flex;align-items:center;gap:5px;font-size:12.5px;font-weight:700;color:var(--navy);text-decoration:none;
+  }
+  .stopped-card .detail-link:hover{color:var(--pink);}
+  .stopped-card .detail-link svg{transition:transform .18s ease;}
+  .stopped-card .detail-link:hover svg{transform:translateX(3px);}
 
   .closing{padding:16px 0 100px;text-align:center;}
   .closing-cta{
@@ -336,21 +342,25 @@
         <div class="stopped-phase">01 · Discover</div>
         <span class="stopped-day">Would have caught Day 0</span>
         <p>An inventory sweep flags svc-atlas-agent the day it's provisioned — before it ever touches a second system.</p>
+        <a class="detail-link" href="guardrails-detail.html#discover">How this works<svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
       <div class="stopped-card">
         <div class="stopped-phase">02 · Contain</div>
         <span class="stopped-day">Would have caught Day 3</span>
         <p>Least-privilege boundaries block the scope creep — cross-region order data was never in the original approval.</p>
+        <a class="detail-link" href="guardrails-detail.html#contain">How this works<svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
       <div class="stopped-card">
         <div class="stopped-phase">03 · Govern Identity</div>
         <span class="stopped-day">Would have caught Day 12</span>
         <p>Behavioral monitoring on the non-human identity flags 214 calls in 90 seconds — not 45 days later.</p>
+        <a class="detail-link" href="guardrails-detail.html#govern-identity">How this works<svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
       <div class="stopped-card">
         <div class="stopped-phase">04 · Institutionalize</div>
         <span class="stopped-day">Would have caught it sooner, every time</span>
         <p>A standing review cadence for AI identities turns this into a same-week catch instead of a finance-driven surprise.</p>
+        <a class="detail-link" href="guardrails-detail.html#institutionalize">How this works<svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
     </div>
   </div>
@@ -377,7 +387,7 @@
 
   var CHAPTERS = [
     {
-      key:"deployed", day:"Day 0", title:"Day 0 — Deployed",
+      key:"deployed", hash:"day0", day:"Day 0", title:"Day 0 — Deployed",
       beat:"CHAPTER 1 OF 4",
       impact:"Launched in an afternoon by the support team. Not one security or identity system knows this agent exists.",
       exposurePct:18, exposureLabel:"Low — but unmeasured",
@@ -389,7 +399,7 @@
       ]
     },
     {
-      key:"scopecreep", day:"Day 3", title:"Day 3 — Scope creep",
+      key:"scopecreep", hash:"day3", day:"Day 3", title:"Day 3 — Scope creep",
       beat:"CHAPTER 2 OF 4",
       impact:"No new approval, no new alert — but the identity's active reach just doubled, on the same unmonitored credential.",
       exposurePct:42, exposureLabel:"Elevated",
@@ -401,7 +411,7 @@
       ]
     },
     {
-      key:"compromise", day:"Day 12", title:"Day 12 — Compromise",
+      key:"compromise", hash:"day12", day:"Day 12", title:"Day 12 — Compromise",
       beat:"CHAPTER 3 OF 4",
       impact:"The attacker didn't need to breach four regional systems. One standing credential already had the keys to all of them.",
       exposurePct:96, exposureLabel:"Critical",
@@ -414,7 +424,7 @@
       ]
     },
     {
-      key:"discovered", day:"Day 45", title:"Day 45 — Discovered",
+      key:"discovered", hash:"day45", day:"Day 45", title:"Day 45 — Discovered",
       beat:"CHAPTER 4 OF 4",
       impact:"Discovered by an invoice, not a detection rule — six and a half weeks after the credential was first compromised.",
       exposurePct:38, exposureLabel:"Contained, not zero",
@@ -532,9 +542,24 @@
 
     exposureBar.style.width = ch.exposurePct + "%";
     exposureLabel.textContent = ch.exposureLabel;
+
+    if(history.replaceState){
+      history.replaceState(null, "", "#" + ch.hash);
+    }
   }
 
-  goToChapter(0);
+  var startIndex = 0;
+  var deepLinked = false;
+  var initialHash = window.location.hash.replace("#", "");
+  CHAPTERS.forEach(function(ch, i){
+    if(ch.hash === initialHash){ startIndex = i; deepLinked = true; }
+  });
+  goToChapter(startIndex);
+  if(deepLinked){
+    setTimeout(function(){
+      document.querySelector(".scenario").scrollIntoView({behavior:"smooth", block:"start"});
+    }, 300);
+  }
 
   var playing = false;
   var playTimer = null;
