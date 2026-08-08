@@ -197,9 +197,9 @@
     background:var(--pink);color:#fff;font-size:9.5px;font-weight:700;letter-spacing:.05em;
     padding:2px 8px;border-radius:10px;white-space:nowrap;
   }
-  .readiness-today .line{width:2px;height:36px;background:var(--pink);margin:4px auto 0;opacity:.55;}
+  .readiness-today .line{width:2px;height:10px;background:var(--pink);margin:4px auto 0;opacity:.55;}
 
-  .readiness-phases{position:relative;height:184px;margin:44px 6px 0;}
+  .readiness-phases{position:relative;height:210px;margin:44px 6px 0;}
   .readiness-phase{
     position:absolute;top:0;transform:translateX(-50%);
     display:flex;flex-direction:column;align-items:center;cursor:pointer;width:112px;
@@ -220,7 +220,7 @@
   }
   .readiness-detail strong{color:var(--navy);}
   .readiness-detail .window-tag{
-    display:inline-block;margin-top:12px;font-size:12px;font-weight:700;
+    display:block;width:fit-content;margin-top:14px;font-size:12px;font-weight:700;
     padding:4px 12px;border-radius:20px;background:#fff;border:1px solid var(--border);color:var(--gray-blue);
   }
   .readiness-detail .window-tag.upcoming{color:var(--teal);border-color:var(--teal);background:#E1FBF9;}
@@ -649,7 +649,7 @@
     el.className = 'readiness-phase';
     el.style.left = p + '%';
     if (p - lastPhasePct < 9){
-      el.style.top = '64px';
+      el.style.top = '100px';
     }
     lastPhasePct = p;
     el.innerHTML =

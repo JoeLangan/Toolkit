@@ -192,7 +192,7 @@
   }
   .readiness-today .line{width:2px;height:44px;background:var(--pink);margin:4px auto 0;opacity:.55;}
 
-  .readiness-phases{position:relative;height:184px;margin:44px 6px 0;}
+  .readiness-phases{position:relative;height:210px;margin:44px 6px 0;}
   .readiness-phase{
     position:absolute;top:0;transform:translateX(-50%);
     display:flex;flex-direction:column;align-items:center;cursor:pointer;width:108px;
@@ -213,7 +213,7 @@
   }
   .readiness-detail strong{color:var(--navy);}
   .readiness-detail .window-tag{
-    display:inline-block;margin-top:12px;font-size:12px;font-weight:700;
+    display:block;width:fit-content;margin-top:14px;font-size:12px;font-weight:700;
     padding:4px 12px;border-radius:20px;background:#fff;border:1px solid var(--border);color:var(--gray-blue);
   }
   .readiness-detail .window-tag.upcoming{color:var(--teal);border-color:var(--teal);background:#E1FBF9;}
@@ -226,6 +226,15 @@
   .risk-bar-fill{height:100%;width:100%;background:linear-gradient(90deg,#D64545,var(--teal));border-radius:6px;transition:width .5s ease;}
 
   .closing{padding:80px 0 100px;text-align:center;}
+  .closing-links{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-top:24px;}
+  .closing-cta{
+    display:inline-flex;align-items:center;gap:10px;padding:13px 24px;
+    background:var(--navy);color:#fff;border-radius:30px;text-decoration:none;
+    font-family:"Manrope",sans-serif;font-weight:700;font-size:14px;letter-spacing:.01em;
+    transition:transform .18s ease,box-shadow .18s ease,background .18s ease;
+  }
+  .closing-cta:hover{background:var(--pink);transform:translateY(-2px);}
+  .closing-cta svg{flex-shrink:0;transform:rotate(180deg);}
   .closing p{font-size:16px;color:var(--gray-blue);font-style:italic;max-width:56ch;margin:0 auto 8px;}
 
   footer{background:var(--navy);color:#EDEEF7;text-align:center;padding:26px 44px;font-size:12px;opacity:.9;}
@@ -355,7 +364,13 @@
 <section class="closing">
   <div class="wrap">
     <p>This roadmap is live — it's built off today's real date, not a snapshot. Come back in a year and the countdown, the timeline, and the readiness windows will all have moved with it.</p>
-    <p>Crypto-agility, the final phase here, is also where this connects to the next mandate: post-quantum migration. That briefing is coming soon.</p>
+    <p>Crypto-agility, the final phase here, is also where this connects to the next mandate: post-quantum migration.</p>
+    <div class="closing-links">
+      <a class="closing-cta" href="pqc.html">
+        Read the Post-Quantum Cryptography briefing
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -632,7 +647,7 @@
     el.className = 'readiness-phase';
     el.style.left = p + '%';
     if (p - lastPhasePct < 9){
-      el.style.top = '64px';
+      el.style.top = '100px';
     }
     lastPhasePct = p;
     el.innerHTML =
