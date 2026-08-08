@@ -102,6 +102,14 @@
   }
   .countdown-unit .lbl{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#8D93C7;margin-top:6px;}
 
+  .countdown-future{
+    grid-column:1 / -1;display:none;flex-wrap:wrap;gap:8px 28px;
+    margin-top:8px;padding-top:16px;border-top:1px solid rgba(255,255,255,.14);
+  }
+  .countdown-future-item{font-size:12.5px;color:#7A81B0;}
+  .countdown-future-item strong{color:#B9BEE8;font-weight:700;}
+  .countdown-future-item .rel{color:#6067A0;}
+
   /* Sections */
   .section{padding:96px 0;border-top:1px solid var(--border);}
   .beat-num{font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--gray-blue);margin-bottom:14px;}
@@ -144,27 +152,27 @@
 
   /* Beat 2: known / shadow sort visual (reused pattern) */
   .sort-visual{
-    margin:44px 0 40px;border:1px solid var(--border);border-radius:14px;
-    background:var(--bg-soft);padding:32px;
+    margin:36px 0 40px;border:1px solid var(--border);border-radius:14px;
+    background:var(--bg-soft);padding:24px 28px;
   }
-  .sort-toggle-row{display:flex;justify-content:center;margin-bottom:24px;}
+  .sort-toggle-row{display:flex;justify-content:center;margin-bottom:18px;}
   .sort-btn{
     font-family:inherit;font-size:13.5px;font-weight:700;color:#fff;background:var(--navy);
     border:none;border-radius:22px;padding:10px 26px;cursor:pointer;transition:background .2s ease;
   }
   .sort-btn:hover{background:#221f7a;}
   .sort-btn.done{background:var(--teal);cursor:default;}
-  .sort-columns{display:grid;grid-template-columns:1fr 1fr;gap:24px;min-height:180px;}
-  .sort-col{border:1px dashed var(--border);border-radius:10px;padding:16px;position:relative;min-height:180px;}
-  .sort-col-label{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-blue);margin-bottom:10px;text-align:center;}
+  .sort-columns{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  .sort-col{border:1px dashed var(--border);border-radius:10px;padding:12px;position:relative;min-height:56px;}
+  .sort-col-label{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-blue);margin-bottom:8px;text-align:center;}
   .sort-col.known .sort-col-label{color:var(--teal);}
   .sort-col.shadow .sort-col-label{color:var(--pink);}
   .sort-dot{
     width:12px;height:12px;border-radius:50%;display:inline-block;margin:3px;
     background:var(--gray-blue);transition:background .6s ease, transform .6s ease;
   }
-  .sort-dots-pool{display:flex;flex-wrap:wrap;justify-content:center;align-content:center;min-height:150px;}
-  .sort-col .sort-dots-pool{min-height:130px;}
+  .sort-dots-pool{display:flex;flex-wrap:wrap;justify-content:center;align-content:flex-start;min-height:40px;}
+  .sort-col .sort-dots-pool{min-height:26px;}
 
   /* Beat 3: readiness timeline */
   .readiness{margin-top:48px;}
@@ -230,6 +238,7 @@
     .hero h1{font-size:36px;}
     .countdown-panel{grid-template-columns:1fr;text-align:center;}
     .countdown-clock{justify-content:center;}
+    .countdown-future{justify-content:center;}
     .section{padding:64px 0;}
     .sort-columns{grid-template-columns:1fr;}
     .readiness-phases{height:auto;display:grid;grid-template-columns:repeat(2,1fr);row-gap:24px;margin:24px 0 0;}
@@ -253,7 +262,7 @@
   <div class="hero-field" id="hero-field"></div>
   <div class="wrap hero-inner">
     <span class="eyebrow">Xalient Briefing</span>
-    <h1 class="display">398 days is about to become 47.</h1>
+    <h1 class="display">398 days to 47 — already underway.</h1>
     <p class="hero-sub">The industry is already partway through a fixed, published schedule that cuts the maximum lifetime of a public certificate down to 47 days by 2029. Manual certificate management doesn't survive what's still ahead.</p>
 
     <div class="countdown-panel" id="countdown-panel">
@@ -262,6 +271,7 @@
         <div class="countdown-next" id="countdown-next"></div>
       </div>
       <div class="countdown-clock" id="countdown-clock"></div>
+      <div class="countdown-future" id="countdown-future"></div>
     </div>
   </div>
 </section>
@@ -284,7 +294,7 @@
 <section class="section" id="exposure">
   <div class="wrap">
     <div class="beat-num mono">02 — EXPOSURE</div>
-    <h2 class="display">The failure mode isn't hypothetical</h2>
+    <h2 class="display">This isn't hypothetical</h2>
     <p class="section-intro">Unlike a lot of security risk, a certificate failure doesn't stay quiet. It's binary — valid or expired — and when it fails, it fails in public, all at once.</p>
 
     <div class="stat-callout">
@@ -297,7 +307,12 @@
       <p class="stat-source">One internal monitoring certificate expired in January 2017 and went unrenewed for over six months — during which encrypted attacker traffic couldn't be inspected. At the time, Equifax had at least 324 expired certificates across its environment, 79 on business-critical monitoring domains. Widely reported, post-breach findings.</p>
     </div>
 
-    <p class="section-intro" style="margin-top:44px;">And the certificates behind both of those incidents had something in common: nobody had a reliable answer to "which certificates do we actually have, and who owns them?"</p>
+    <div class="stat-callout pink">
+      <strong>72%</strong>of security leaders reported at least one certificate-related outage in the past year.
+      <p class="stat-source">Source: CyberArk, <em>2025 State of Machine Identity Security Report</em>. Neither incident above is the exception — it's closer to the base rate.</p>
+    </div>
+
+    <p class="section-intro" style="margin-top:44px;">And the certificates behind both of those named incidents had something in common: nobody had a reliable answer to "which certificates do we actually have, and who owns them?"</p>
 
     <div class="sort-visual">
       <div class="sort-toggle-row">
@@ -314,6 +329,7 @@
         </div>
       </div>
       <div class="sort-dots-pool" id="pool-mixed" style="margin-top:20px;"></div>
+      <p class="stat-source" style="text-align:center;margin-top:18px;">Ratio reflects a real finding, scaled to 30 dots for the visual: only 34% of organizations have a complete, current view of their digital certificates. Source: DigiCert &amp; Omdia, <em>2026 Global PKI Research Report</em>.</p>
     </div>
   </div>
 </section>
@@ -387,10 +403,21 @@
     }
     return null;
   }
+  function laterMilestones(now, next){
+    if (!next) return [];
+    return MILESTONES.filter(function(m){ return m.date > next.date; });
+  }
+  function humanizeUntil(date, now){
+    var days = Math.round((date - now) / (1000*60*60*24));
+    if (days > 545) return '~' + (days / 365).toFixed(1) + ' years away';
+    if (days > 60) return '~' + Math.round(days / 30) + ' months away';
+    return 'in ' + days + ' days';
+  }
 
   var eraEl = document.getElementById('countdown-era');
   var nextEl = document.getElementById('countdown-next');
   var clockEl = document.getElementById('countdown-clock');
+  var futureEl = document.getElementById('countdown-future');
   var fmtDate = function(d){
     return d.toLocaleDateString('en-US', { month:'long', day:'numeric', year:'numeric', timeZone:'UTC' });
   };
@@ -399,6 +426,7 @@
     var now = new Date();
     var era = currentEra(now);
     var next = nextMilestone(now);
+    var later = laterMilestones(now, next);
 
     eraEl.innerHTML = 'Current maximum certificate lifetime: <strong>' + era.days + ' days</strong>' +
       (era.since ? ' — in effect since ' + fmtDate(era.since) : ' (baseline, pre-reduction)');
@@ -422,6 +450,17 @@
       nextEl.textContent = 'Every publicly-trusted certificate now lives 47 days or less. This has been the case since March 15, 2029.';
       clockEl.innerHTML = '';
     }
+
+    if (later.length){
+      futureEl.style.display = 'flex';
+      futureEl.innerHTML = later.map(function(m){
+        return '<span class="countdown-future-item">Then: <strong>' + m.days + '-day maximum</strong> — ' +
+          fmtDate(m.date) + ' <span class="rel">(' + humanizeUntil(m.date, now) + ')</span></span>';
+      }).join('');
+    } else {
+      futureEl.style.display = 'none';
+      futureEl.innerHTML = '';
+    }
   }
   renderCountdown();
   setInterval(renderCountdown, 1000);
@@ -437,23 +476,23 @@
   var LAYERS = [
     {
       icon:'web', title:'Public TLS / Web',
-      oneliner:'Customer-facing sites and APIs — the ones everyone thinks of first.',
-      detail:'The visible layer: the padlock in the browser bar, public API endpoints. It gets the most attention precisely because it\'s the easiest to see — which is part of why the other three layers stay neglected.'
+      oneliner:'Customer-facing sites and APIs — the most mature layer by far.',
+      detail:'Public Certificate Authorities, automated issuance via protocols like ACME, and public Certificate Transparency logs mean this layer already has real tooling and real oversight built around it. That maturity is exactly why it isn\'t where the actual exposure sits: attackers and outages alike gravitate toward the three layers underneath, where none of that instrumentation reaches.'
     },
     {
       icon:'mesh', title:'Internal / mTLS &amp; Service Mesh',
-      oneliner:'Service-to-service authentication inside the environment.',
-      detail:'Usually the largest population by volume, and almost entirely invisible to anything monitoring only external traffic. This is where certificate sprawl actually lives.'
+      oneliner:'Service-to-service authentication — the layer nobody externally audits.',
+      detail:'Usually the largest population by volume, generated and rotated by internal tooling or a service mesh with no connection to the public CA ecosystem and no Certificate Transparency logging. Frequently no central inventory either — this is where certificate sprawl actually lives, and where "how many certificates do we have" stops having a confident answer.'
     },
     {
       icon:'sign', title:'Code Signing',
-      oneliner:'Software builds, firmware, CI/CD pipelines.',
-      detail:'A different risk shape entirely: a compromised signing key doesn\'t leak data, it lets an attacker publish malicious code that everything downstream trusts as legitimate.'
+      oneliner:'Software builds, firmware, CI/CD pipelines — a different risk shape entirely.',
+      detail:'A compromised signing key doesn\'t leak data — it lets an attacker publish malicious code that every downstream system trusts as legitimate, often without any further exploit required. These keys tend to be long-lived, held by a small number of build systems, and rarely rotated on any real schedule, which makes them a high-value, low-friction target relative to almost anything else in the environment.'
     },
     {
       icon:'device', title:'Device &amp; Workload Identity',
       oneliner:'IoT, OT, cloud workloads, and increasingly AI agents.',
-      detail:'The fastest-growing layer, and the direct link back to the machine-identity explosion — most non-human identities authenticate with a certificate or key under the hood.'
+      detail:'The fastest-growing layer by volume, and the direct link back to the machine-identity explosion — most non-human identities, AI agents included, authenticate with a certificate or key rather than a username and password. Provisioning here is often automated at deployment but rarely revisited afterward, which is the same standing-access pattern that turns one compromised workload into a much wider blast radius.'
     }
   ];
 
@@ -490,7 +529,7 @@
   var poolKnown = document.getElementById('pool-known');
   var poolShadow = document.getElementById('pool-shadow');
   var TOTAL_DOTS = 30;
-  var KNOWN_COUNT = 11;
+  var KNOWN_COUNT = 10;
   var mixedDots = [];
 
   for (var m = 0; m < TOTAL_DOTS; m++){
@@ -540,22 +579,22 @@
     {
       label:'Discover', target: addDays(now, 42),
       window:'Within 6 weeks',
-      detail:'<strong>Full inventory, no exceptions.</strong> Every certificate and key across cloud, on-prem and containers — sanctioned or not. This should start immediately regardless of where any org sits on the schedule below; nothing after this phase works without it.'
+      detail:'<strong>Full inventory, no exceptions.</strong> Every certificate and key across cloud, on-prem, containers and code-signing infrastructure — sanctioned or not. In practice: scanning network traffic and open ports for certificates actually in use, querying every CA (public and internal) for what they\'ve issued, and reconciling both against whatever inventory already exists on paper — because none of those three sources is complete on its own. This should start immediately regardless of where any org sits on the schedule below; nothing after this phase works without it.'
     },
     {
       label:'Automate', target: addMonths(MS_MAR27, -3),
       window:'3 months ahead of the 100-day cutover',
-      detail:'<strong>Automated issuance, renewal and revocation.</strong> At 200 days, manual renewal is painful but survivable. At 100 days, it stops being survivable at any real scale. This needs to be running before the March 2027 cutover, not started because of it.'
+      detail:'<strong>Automated issuance, renewal and revocation.</strong> At 200 days, manual renewal is painful but survivable with enough spreadsheets and calendar reminders. At 100 days, the volume of renewal events roughly doubles again against that baseline, and it stops being survivable at any real scale. In practice: an ACME-style automated issuance workflow wired directly into the systems that actually hold certificates — load balancers, service mesh, application servers — so renewal becomes a background event instead of a ticket. This needs to be running before the March 2027 cutover, not started because of it.'
     },
     {
       label:'Enforce Policy', target: addMonths(MS_MAR27, 3),
       window:'3 months after the 100-day cutover lands',
-      detail:'<strong>Consistent policy across every CA, algorithm and key strength.</strong> Automation without policy just automates the sprawl. This is what actually closes the shadow-certificate gap from the previous section.'
+      detail:'<strong>Consistent policy across every CA, algorithm and key strength.</strong> Automation without policy just automates the sprawl — it renews a shadow certificate exactly as efficiently as a sanctioned one. In practice: a defined, enforced standard for which CAs are trusted, minimum key strength, approved algorithms, and a hard block on self-signed certificates reaching production without an explicit, logged exception. This is what actually closes the shadow-certificate gap from the previous section, rather than just automating around it.'
     },
     {
       label:'Prepare for Migration', target: addMonths(FINAL_MILESTONE.date, -9),
       window:'9 months ahead of the 47-day cutover',
-      detail:'<strong>Crypto-agility as a standing capability, not a project.</strong> The same muscle that absorbs a lifetime cut is what absorbs an algorithm change. This is the direct bridge to post-quantum migration — the mandate after this one.'
+      detail:'<strong>Crypto-agility as a standing capability, not a project.</strong> The same muscle that absorbs a lifetime cut — central inventory, automated issuance, enforced policy — is what absorbs an algorithm change, because both reduce to the same question: can every certificate and key in the environment be reissued on command, without a manual hunt through systems nobody\'s tracking. In practice: making sure the automation and policy built in the previous two phases are algorithm-agnostic by design, not hardcoded to today\'s standards. This is the direct bridge to post-quantum migration — the mandate that follows this one.'
     }
   ];
 
