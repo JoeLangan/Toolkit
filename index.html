@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Adoption &amp; Guardrails | Xalient</title>
-<meta name="description" content="How enterprises are adopting AI, where visibility breaks down, and the guardrails that close the gap.">
+<title>Xalient Toolkit</title>
+<meta name="description" content="Interactive briefings — AI adoption, PKI &amp; certificate lifecycle, and post-quantum cryptography.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
@@ -34,11 +34,9 @@
   }
   .display{font-family:"Manrope",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;}
   .mono{font-family:ui-monospace,"SF Mono","Cascadia Mono",Consolas,monospace;}
-
   h1,h2,h3{margin:0;}
   a{color:inherit;}
 
-  /* Header */
   header.site-header{
     position:sticky;top:0;z-index:50;
     display:flex;align-items:center;
@@ -53,10 +51,10 @@
     font-size:12px;color:var(--gray-blue);font-weight:600;letter-spacing:.02em;
   }
 
-  .wrap{max-width:920px;margin:0 auto;padding:0 44px;}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 44px;}
 
   /* Hero */
-  .hero{position:relative;padding:120px 0 100px;overflow:hidden;}
+  .hero{position:relative;padding:96px 0 72px;overflow:hidden;}
   .hero-field{position:absolute;inset:0;pointer-events:none;z-index:0;}
   .drift-dot{
     position:absolute;border-radius:50%;
@@ -70,176 +68,64 @@
   }
   .hero-inner{position:relative;z-index:1;}
   .eyebrow{
-    display:inline-block;
-    font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+    display:inline-block;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
     color:var(--gray-blue);margin-bottom:20px;
   }
   .hero h1{
-    font-size:52px;line-height:1.12;letter-spacing:-.02em;font-weight:800;
-    color:var(--navy);max-width:15ch;text-wrap:balance;margin-bottom:24px;
+    font-size:50px;line-height:1.12;letter-spacing:-.02em;font-weight:800;
+    color:var(--navy);max-width:17ch;text-wrap:balance;margin-bottom:22px;
   }
-  .hero-sub{font-size:18px;line-height:1.6;color:var(--gray-blue);max-width:56ch;}
+  .hero-sub{font-size:17.5px;line-height:1.6;color:var(--gray-blue);max-width:60ch;}
 
-  /* Sections */
-  .section{padding:96px 0;border-top:1px solid var(--border);}
-  .beat-num{
-    font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--gray-blue);
-    margin-bottom:14px;
-  }
-  .section h2{
-    font-size:34px;font-weight:800;color:var(--navy);letter-spacing:-.015em;
-    max-width:18ch;text-wrap:balance;margin-bottom:20px;
-  }
-  .section-intro{font-size:16.5px;line-height:1.65;color:var(--ink);max-width:62ch;margin-bottom:16px;}
-  .section-intro strong{color:var(--navy);}
+  /* Topic grid */
+  .topics{padding:16px 0 100px;}
+  .topics-label{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gray-blue);margin-bottom:24px;}
+  .topic-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
 
-  .stat-callout{
-    background:var(--bg-soft);border-left:4px solid var(--navy);border-radius:6px;
-    padding:18px 22px;margin:28px 0 8px;font-size:15px;line-height:1.55;color:var(--navy);
-    max-width:64ch;
+  .topic-card{
+    position:relative;display:flex;flex-direction:column;
+    border:1px solid var(--border);border-radius:16px;background:#fff;
+    padding:28px 26px;text-decoration:none;min-height:230px;
+    transition:border-color .2s ease, box-shadow .2s ease, transform .2s ease;
   }
-  .stat-callout.pink{border-left-color:var(--pink);}
-  .stat-callout strong{font-size:23px;display:inline-block;margin-right:6px;}
-  .stat-source{font-size:11.5px;color:var(--gray-blue);margin:6px 0 0;}
+  .topic-card.live:hover{border-color:var(--teal);box-shadow:0 16px 32px -20px rgba(17,15,81,.35);transform:translateY(-3px);}
+  .topic-card.soon{cursor:default;opacity:.7;}
 
-  /* Beat 1: layer stack */
-  .stack{margin-top:48px;position:relative;}
-  .layer{
-    border:1px solid var(--border);border-radius:10px;background:#fff;
-    margin-bottom:12px;overflow:hidden;cursor:pointer;
-    transition:border-color .2s ease, box-shadow .2s ease;
+  .topic-icon{
+    width:44px;height:44px;border-radius:11px;background:var(--bg-soft);
+    display:flex;align-items:center;justify-content:center;color:var(--navy);margin-bottom:22px;
   }
-  .layer:hover{border-color:var(--teal);}
-  .layer.agentic{border-left:3px solid var(--pink);}
-  .layer-head{display:flex;align-items:center;gap:16px;padding:20px 22px;}
-  .layer-icon{
-    width:38px;height:38px;border-radius:9px;background:var(--bg-soft);
-    display:flex;align-items:center;justify-content:center;flex:none;color:var(--navy);
-  }
-  .layer.agentic .layer-icon{background:#FFE3F1;color:var(--pink);}
-  .layer-icon svg{width:20px;height:20px;}
-  .layer-title{font-weight:800;color:var(--navy);font-size:16px;}
-  .layer-oneliner{font-size:13px;color:var(--gray-blue);margin-top:2px;}
-  .layer-chevron{margin-left:auto;color:var(--gray-blue);transition:transform .25s ease;flex:none;}
-  .layer.open .layer-chevron{transform:rotate(180deg);}
-  .layer-detail{max-height:0;overflow:hidden;transition:max-height .35s ease;}
-  .layer-detail-inner{padding:0 22px 22px 76px;font-size:14.5px;line-height:1.6;color:var(--ink);}
+  .topic-card.live .topic-icon{background:#E1FBF9;color:var(--teal);}
+  .topic-icon svg{width:22px;height:22px;}
 
-  .rise-track{position:absolute;top:0;bottom:0;left:37px;width:2px;pointer-events:none;z-index:-1;}
-  .rise-dot{
-    position:absolute;width:6px;height:6px;border-radius:50%;background:var(--teal);
-    animation:rise 5.5s linear infinite;opacity:0;
-  }
-  @keyframes rise{
-    0%{bottom:-2%;opacity:0;}
-    8%{opacity:.7;}
-    90%{opacity:.7;}
-    100%{bottom:102%;opacity:0;}
-  }
+  .topic-title{font-weight:800;color:var(--navy);font-size:18px;margin-bottom:10px;}
+  .topic-desc{font-size:14px;line-height:1.6;color:var(--ink);flex:1;}
 
-  /* Beat 2: sort visual */
-  .sort-visual{
-    margin:44px 0 40px;border:1px solid var(--border);border-radius:14px;
-    background:var(--bg-soft);padding:32px;
+  .topic-meta{
+    display:flex;align-items:center;justify-content:space-between;
+    margin-top:20px;padding-top:16px;border-top:1px solid var(--border);
+    font-size:12px;font-weight:700;
   }
-  .sort-toggle-row{display:flex;justify-content:center;margin-bottom:24px;}
-  .sort-btn{
-    font-family:inherit;font-size:13.5px;font-weight:700;color:#fff;background:var(--navy);
-    border:none;border-radius:22px;padding:10px 26px;cursor:pointer;transition:background .2s ease;
+  .topic-meta .go{
+    display:inline-flex;align-items:center;gap:5px;color:var(--teal);
+    transition:transform .18s ease;
   }
-  .sort-btn:hover{background:#221f7a;}
-  .sort-btn.done{background:var(--teal);cursor:default;}
-  .sort-columns{display:grid;grid-template-columns:1fr 1fr;gap:24px;min-height:180px;}
-  .sort-col{border:1px dashed var(--border);border-radius:10px;padding:16px;position:relative;min-height:180px;}
-  .sort-col-label{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-blue);margin-bottom:10px;text-align:center;}
-  .sort-col.sanctioned .sort-col-label{color:var(--teal);}
-  .sort-col.unsanctioned .sort-col-label{color:var(--pink);}
-  .sort-dot{
-    width:12px;height:12px;border-radius:50%;display:inline-block;margin:3px;
-    background:var(--gray-blue);
-    transition:background .6s ease, transform .6s ease;
+  .topic-card.live:hover .go{transform:translateX(3px);}
+  .topic-badge{
+    font-family:ui-monospace,monospace;font-size:10.5px;font-weight:700;letter-spacing:.03em;
+    color:var(--gray-blue);background:var(--bg-soft);border-radius:20px;padding:3px 10px;
   }
-  .sort-dots-pool{display:flex;flex-wrap:wrap;justify-content:center;align-content:center;min-height:150px;}
-  .sort-col .sort-dots-pool{min-height:130px;}
-
-  /* Beat 2: failure modes accordion */
-  .failure-list{margin-top:16px;}
-  .failure-item{border-bottom:1px solid var(--border);}
-  .failure-head{
-    display:flex;align-items:center;gap:16px;padding:18px 4px;cursor:pointer;
-  }
-  .failure-num{
-    font-family:ui-monospace,"SF Mono","Cascadia Mono",Consolas,monospace;
-    font-size:13px;color:var(--gray-blue);flex:none;width:22px;
-  }
-  .failure-title{font-weight:700;color:var(--navy);font-size:15.5px;flex:1;}
-  .failure-chevron{color:var(--gray-blue);transition:transform .25s ease;flex:none;}
-  .failure-item.open .failure-chevron{transform:rotate(180deg);}
-  .failure-detail{max-height:0;overflow:hidden;transition:max-height .35s ease;}
-  .failure-detail-inner{padding:0 4px 20px 38px;font-size:14.5px;line-height:1.6;color:var(--ink);max-width:60ch;}
-  .failure-detail-inner .cite{display:block;font-size:12px;color:var(--gray-blue);margin-top:8px;}
-
-  /* Beat 3: journey */
-  .journey{margin-top:48px;}
-  .journey-track{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-bottom:8px;}
-  .journey-line{position:absolute;top:23px;left:12%;right:12%;height:2px;background:var(--border);z-index:0;}
-  .journey-line-fill{position:absolute;top:0;left:0;height:100%;width:0%;background:var(--teal);transition:width .5s ease;}
-  .journey-station{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;cursor:pointer;padding:0 6px;}
-  .journey-dot{
-    width:46px;height:46px;border-radius:50%;background:#fff;border:2px solid var(--border);
-    display:flex;align-items:center;justify-content:center;font-family:ui-monospace,monospace;
-    font-weight:700;color:var(--gray-blue);transition:all .3s ease;margin-bottom:12px;
-  }
-  .journey-station.active .journey-dot{border-color:var(--teal);color:var(--teal);background:#E1FBF9;box-shadow:0 0 0 5px #E1FBF977;}
-  .journey-station-label{font-size:12.5px;font-weight:700;color:var(--gray-blue);text-align:center;}
-  .journey-station.active .journey-station-label{color:var(--navy);}
-
-  .journey-detail{
-    background:var(--bg-soft);border-radius:12px;padding:26px 28px;margin-top:36px;
-    font-size:15px;line-height:1.65;color:var(--ink);min-height:100px;
-  }
-  .journey-detail strong{color:var(--navy);}
-  .detail-link{
-    display:flex;width:fit-content;align-items:center;gap:6px;margin-top:14px;
-    font-size:13.5px;font-weight:700;color:var(--teal);text-decoration:none;
-  }
-  .detail-link:hover{color:var(--pink);}
-  .detail-link svg{transition:transform .18s ease;}
-  .detail-link:hover svg{transform:translateX(3px);}
-
-  .exposure-meter{margin-top:32px;max-width:420px;}
-  .exposure-meter-label{display:flex;justify-content:space-between;font-size:12.5px;font-weight:700;color:var(--gray-blue);margin-bottom:8px;text-transform:uppercase;letter-spacing:.04em;}
-  .exposure-meter-label span:last-child{color:var(--navy);}
-  .exposure-bar-track{height:10px;border-radius:6px;background:var(--border);overflow:hidden;}
-  .exposure-bar-fill{height:100%;width:100%;background:linear-gradient(90deg,#D64545,var(--teal));border-radius:6px;transition:width .5s ease;}
-
-  .closing{padding:80px 0 100px;text-align:center;}
-  .closing p{font-size:16px;color:var(--gray-blue);font-style:italic;max-width:52ch;margin:0 auto;}
-  .closing-cta{
-    display:inline-flex;align-items:center;gap:10px;
-    margin-top:36px;padding:15px 28px;
-    background:var(--navy);color:#fff;
-    border-radius:30px;text-decoration:none;
-    font-family:"Manrope",sans-serif;font-weight:700;font-size:15px;
-    letter-spacing:.01em;
-    transition:transform .18s ease,box-shadow .18s ease,background .18s ease;
-    box-shadow:0 8px 24px -8px rgba(17,15,81,.4);
-  }
-  .closing-cta:hover{background:var(--pink);transform:translateY(-2px);box-shadow:0 12px 28px -8px rgba(255,0,133,.45);}
-  .closing-cta svg{flex-shrink:0;transition:transform .18s ease;}
-  .closing-cta:hover svg{transform:translateX(3px);}
-  .closing-cta-sub{display:block;margin-top:14px;font-size:12.5px;color:var(--gray-blue);}
 
   footer{background:var(--navy);color:#EDEEF7;text-align:center;padding:26px 44px;font-size:12px;opacity:.9;}
 
+  @media (max-width:860px){
+    .topic-grid{grid-template-columns:1fr;}
+  }
   @media (max-width:720px){
     .wrap{padding:0 22px;}
-    .hero{padding:80px 0 60px;}
-    .hero h1{font-size:36px;}
-    .section{padding:64px 0;}
-    .sort-columns{grid-template-columns:1fr;}
-    .journey-track{grid-template-columns:repeat(2,1fr);row-gap:32px;}
-    .journey-line{display:none;}
+    header.site-header{padding:14px 22px;}
+    .hero{padding:64px 0 48px;}
+    .hero h1{font-size:34px;}
   }
 </style>
 </head>
@@ -247,100 +133,21 @@
 
 <header class="site-header">
   <img src="xalient-logo.png" alt="Xalient">
-  <span class="brand-sub">AI Adoption &amp; Guardrails</span>
+  <span class="brand-sub">Toolkit</span>
 </header>
 
 <section class="hero">
   <div class="hero-field" id="hero-field"></div>
   <div class="wrap hero-inner">
-    <span class="eyebrow">Xalient Briefing</span>
-    <h1 class="display">AI is already inside your organization.</h1>
-    <p class="hero-sub">The question is how much of it you can see. This briefing walks through what's actually being adopted, where visibility breaks down, and the order in which security closes the gap.</p>
+    <h1 class="display">Briefings</h1>
+    <p class="hero-sub">Select a topic below.</p>
   </div>
 </section>
 
-<section class="section" id="landscape">
+<section class="topics">
   <div class="wrap">
-    <div class="beat-num mono">01 — LANDSCAPE</div>
-    <h2 class="display">AI doesn't arrive as one thing</h2>
-    <p class="section-intro">It arrives in layers — roughly in order of how invisibly to disruptively each one enters an organization. By the time most security teams notice the third layer, the first two have usually been running for months.</p>
-
-    <div class="stat-callout">
-      <strong>85%</strong>of organizations already have AI agents running in production.
-      <p class="stat-source">Source: Cloud Security Alliance &amp; Aembit, <em>Identity and Access Gaps in the Age of Autonomous AI</em>, 2026.</p>
-    </div>
-
-    <div class="stack" id="stack">
-      <div class="rise-track" id="rise-track"></div>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="exposure">
-  <div class="wrap">
-    <div class="beat-num mono">02 — EXPOSURE</div>
-    <h2 class="display">You can't govern what you can't see</h2>
-    <p class="section-intro">Sanctioned means approved, contracted, governed. Unsanctioned — shadow AI — means personal accounts, browser extensions, ungoverned agent plugins. But the sharper risk isn't the unapproved tool. It's a <strong>sanctioned</strong> tool used in an unsanctioned way — an approved seat, but someone pastes a client contract into it anyway. Sanctioned vs. unsanctioned is a data-flow question, not a license question.</p>
-
-    <div class="sort-visual">
-      <div class="sort-toggle-row">
-        <button class="sort-btn" id="sort-btn">Reveal the split</button>
-      </div>
-      <div class="sort-columns" id="sort-columns">
-        <div class="sort-col sanctioned">
-          <div class="sort-col-label">Sanctioned</div>
-          <div class="sort-dots-pool" id="pool-sanctioned"></div>
-        </div>
-        <div class="sort-col unsanctioned">
-          <div class="sort-col-label">Unsanctioned / Shadow AI</div>
-          <div class="sort-dots-pool" id="pool-unsanctioned"></div>
-        </div>
-      </div>
-      <div class="sort-dots-pool" id="pool-mixed" style="margin-top:20px;"></div>
-    </div>
-
-    <div class="stat-callout pink">
-      <strong>+$670K</strong>higher average breach cost when unsanctioned AI tools are involved.
-      <p class="stat-source">Source: IBM, <em>Cost of a Data Breach Report</em>, 2025.</p>
-    </div>
-    <div class="stat-callout pink">
-      <strong>109 : 1</strong>machine identities now exist for every human identity in the enterprise — up from 82:1 a year ago.
-      <p class="stat-source">Source: Palo Alto Networks, <em>2026 Identity Security Landscape Report</em>.</p>
-    </div>
-
-    <p class="section-intro" style="margin-top:44px;">And because unsanctioned use is invisible to security by definition, that invisibility is exactly where these fail:</p>
-
-    <div class="failure-list" id="failure-list"></div>
-  </div>
-</section>
-
-<section class="section" id="guardrails">
-  <div class="wrap">
-    <div class="beat-num mono">03 — GUARDRAILS</div>
-    <h2 class="display">The journey, in the order it happens</h2>
-    <p class="section-intro">Not a checklist — a sequence. Each phase depends on the one before it. Click through to see why the order matters.</p>
-
-    <div class="journey">
-      <div class="journey-track" id="journey-track">
-        <div class="journey-line"><div class="journey-line-fill" id="journey-line-fill"></div></div>
-      </div>
-      <div class="journey-detail" id="journey-detail"></div>
-      <div class="exposure-meter">
-        <div class="exposure-meter-label"><span>Exposure</span><span id="exposure-label">High</span></div>
-        <div class="exposure-bar-track"><div class="exposure-bar-fill" id="exposure-bar"></div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="closing">
-  <div class="wrap">
-    <p>This is a starting map, not a finished program — the next step is walking it against what's actually running in your environment.</p>
-    <a class="closing-cta" href="ai-risk-in-action.html">
-      Watch it happen: an AI incident, day by day
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </a>
-    <span class="closing-cta-sub">A dramatized walkthrough of an unmanaged agent — from deployment to discovery.</span>
+    <div class="topics-label mono">BRIEFINGS</div>
+    <div class="topic-grid" id="topic-grid"></div>
   </div>
 </section>
 
@@ -352,12 +159,11 @@
 (function(){
   "use strict";
 
-  // ---------- Hero ambient field ----------
   var heroField = document.getElementById('hero-field');
-  for (var i = 0; i < 16; i++){
+  for (var i = 0; i < 14; i++){
     var d = document.createElement('div');
     d.className = 'drift-dot' + (i % 3 === 0 ? ' pink' : '');
-    var size = 6 + Math.random() * 22;
+    var size = 6 + Math.random() * 20;
     d.style.width = size + 'px';
     d.style.height = size + 'px';
     d.style.left = (Math.random() * 100) + '%';
@@ -367,229 +173,51 @@
     heroField.appendChild(d);
   }
 
-  // ---------- Beat 1: layer stack ----------
   var ICONS = {
-    copilot: '<path d="M12 2a5 5 0 00-5 5v3a5 5 0 0010 0V7a5 5 0 00-5-5z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M5 11a7 7 0 0014 0M12 18v3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>',
-    genai: '<rect x="4" y="4" width="16" height="16" rx="3" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 9h8M8 13h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>',
-    agent: '<circle cx="12" cy="8" r="3.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.87 3.13-6 7-6s7 2.13 7 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M19 5l1.3 1.3M20.3 3.7L19 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>',
-    custom: '<path d="M12 2l3 6 6 1-4.5 4.2L17.5 20 12 16.8 6.5 20l1-6.8L3 9l6-1z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>'
+    ai: '<circle cx="12" cy="8" r="3.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.87 3.13-6 7-6s7 2.13 7 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M19 5l1.3 1.3M20.3 3.7L19 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>',
+    pki: '<circle cx="8" cy="14" r="4.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M11.2 10.8L20 2M20 2v4.5M20 2h-4.5M15.5 6.5L18 9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>',
+    pqc: '<circle cx="12" cy="12" r="2" fill="currentColor"/><ellipse cx="12" cy="12" rx="9" ry="4" fill="none" stroke="currentColor" stroke-width="1.5"/><ellipse cx="12" cy="12" rx="9" ry="4" fill="none" stroke="currentColor" stroke-width="1.5" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9" ry="4" fill="none" stroke="currentColor" stroke-width="1.5" transform="rotate(120 12 12)"/>'
   };
 
-  var LAYERS = [
+  var TOPICS = [
     {
-      id:'copilot', icon:'copilot', title:'Embedded / Copilot AI',
-      oneliner:'Already inside the tools people use daily.',
-      detail:'M365 Copilot, Google Workspace, Salesforce Einstein. Often adopted invisibly, bundled into a renewal nobody reviewed for AI risk specifically.'
+      title:'AI Adoption &amp; Guardrails',
+      desc:'How enterprises are adopting AI, where visibility breaks down, and the guardrails that close the gap — including a live incident scenario.',
+      icon:'ai', href:'ai-adoption-guardrails.html', live:true,
+      meta:'3 pages · incident scenario'
     },
     {
-      id:'genai', icon:'genai', title:'Generative AI tools',
-      oneliner:'Standalone tools employees seek out themselves.',
-      detail:'ChatGPT Enterprise, Claude, Gemini. Chosen deliberately by employees for research, writing, and code — which means adoption tracks individual habit, not IT rollout.'
+      title:'PKI &amp; Certificate Lifecycle Management',
+      desc:'Why certificate visibility and automated lifecycle management is the operational foundation everything else depends on.',
+      icon:'pki', href:null, live:false,
+      meta:'In development'
     },
     {
-      id:'agent', icon:'agent', title:'Agentic AI', agentic:true,
-      oneliner:'Acts on systems, not just responds to prompts.',
-      detail:'The fastest-growing layer, and the one carrying the most novel risk — because agents take actions rather than answer questions. This is where "AI adoption" quietly becomes "AI access."'
-    },
-    {
-      id:'custom', icon:'custom', title:'Custom / internal AI',
-      oneliner:'Built in-house on proprietary data.',
-      detail:'Models or retrieval pipelines trained on your own data carry a different risk shape again — IP and model risk, not just tool risk.'
+      title:'Post-Quantum Cryptography',
+      desc:'The migration clock that\'s already running, why "harvest now, decrypt later" changes the urgency, and where it starts.',
+      icon:'pqc', href:null, live:false,
+      meta:'In development'
     }
   ];
 
-  var stackEl = document.getElementById('stack');
-  LAYERS.forEach(function(layer){
-    var el = document.createElement('div');
-    el.className = 'layer' + (layer.agentic ? ' agentic' : '');
+  var grid = document.getElementById('topic-grid');
+  TOPICS.forEach(function(t){
+    var el = document.createElement(t.live ? 'a' : 'div');
+    el.className = 'topic-card ' + (t.live ? 'live' : 'soon');
+    if (t.live) el.setAttribute('href', t.href);
     el.innerHTML =
-      '<div class="layer-head">' +
-        '<div class="layer-icon"><svg viewBox="0 0 24 24">' + ICONS[layer.icon] + '</svg></div>' +
-        '<div><div class="layer-title">' + layer.title + '</div><div class="layer-oneliner">' + layer.oneliner + '</div></div>' +
-        '<svg class="layer-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>' +
-      '</div>' +
-      '<div class="layer-detail"><div class="layer-detail-inner">' + layer.detail + '</div></div>';
-
-    var head = el.querySelector('.layer-head');
-    var detail = el.querySelector('.layer-detail');
-    head.addEventListener('click', function(){
-      var isOpen = el.classList.contains('open');
-      stackEl.querySelectorAll('.layer').forEach(function(l){
-        l.classList.remove('open');
-        l.querySelector('.layer-detail').style.maxHeight = null;
-      });
-      if (!isOpen){
-        el.classList.add('open');
-        detail.style.maxHeight = detail.scrollHeight + 'px';
-      }
-    });
-
-    stackEl.appendChild(el);
+      '<div class="topic-icon"><svg viewBox="0 0 24 24">' + ICONS[t.icon] + '</svg></div>' +
+      '<div class="topic-title display">' + t.title + '</div>' +
+      '<div class="topic-desc">' + t.desc + '</div>' +
+      '<div class="topic-meta">' +
+        '<span class="topic-badge">' + t.meta + '</span>' +
+        (t.live ? '<span class="go">Open<svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>' : '') +
+      '</div>';
+    grid.appendChild(el);
   });
 
-  var riseTrack = document.getElementById('rise-track');
-  for (var r = 0; r < 8; r++){
-    var rd = document.createElement('div');
-    rd.className = 'rise-dot';
-    rd.style.left = (Math.random() * 4 - 2) + 'px';
-    rd.style.animationDelay = (r * -0.7) + 's';
-    riseTrack.appendChild(rd);
-  }
-
-  // ---------- Beat 2: sanctioned/unsanctioned sort ----------
-  var poolMixed = document.getElementById('pool-mixed');
-  var poolSanctioned = document.getElementById('pool-sanctioned');
-  var poolUnsanctioned = document.getElementById('pool-unsanctioned');
-  var TOTAL_DOTS = 30;
-  var SANCTIONED_COUNT = 6;
-  var mixedDots = [];
-
-  for (var m = 0; m < TOTAL_DOTS; m++){
-    var dot = document.createElement('span');
-    dot.className = 'sort-dot';
-    poolMixed.appendChild(dot);
-    mixedDots.push(dot);
-  }
-
-  document.getElementById('sort-btn').addEventListener('click', function(btn){
-    var button = document.getElementById('sort-btn');
-    if (button.classList.contains('done')) return;
-    button.textContent = 'Split revealed';
-    button.classList.add('done');
-
-    mixedDots.forEach(function(dot, i){
-      setTimeout(function(){
-        var toSanctioned = i < SANCTIONED_COUNT;
-        dot.style.background = toSanctioned ? 'var(--teal)' : 'var(--pink)';
-        dot.remove();
-        (toSanctioned ? poolSanctioned : poolUnsanctioned).appendChild(dot);
-      }, i * 45);
-    });
-  });
-
-  // ---------- Beat 2: failure modes ----------
-  var FAILURES = [
-    {
-      title:'Data exfiltration via prompt',
-      detail:'Sensitive data pasted directly into a public AI tool — the fastest, least technical way data leaves an organization.'
-    },
-    {
-      title:'Over-permissioned agents',
-      detail:'An agent given broad access "to get things done faster." Standing, excessive access is exactly what turns a small mistake into a large one.'
-    },
-    {
-      title:'Prompt injection &amp; manipulated output',
-      detail:'A genuinely different risk category — integrity, not confidentiality. Manipulated inputs can steer an agent into taking the wrong action entirely.'
-    },
-    {
-      title:'Third-party AI risk',
-      detail:'A vendor builds AI features on top of your data without your explicit review — risk introduced through a contract you already signed.'
-    },
-    {
-      title:'Regulatory exposure',
-      detail:'Prohibited AI practices have been enforceable since February 2025, with penalties reaching €35M or 7% of global turnover. High-risk system obligations, deferred to December 2027, are still coming — this is a board-level clock, not only a security one.',
-      cite:'Source: EU AI Act (Regulation (EU) 2024/1689).'
-    }
-  ];
-
-  var failureListEl = document.getElementById('failure-list');
-  FAILURES.forEach(function(f, i){
-    var el = document.createElement('div');
-    el.className = 'failure-item';
-    el.innerHTML =
-      '<div class="failure-head">' +
-        '<span class="failure-num mono">0' + (i + 1) + '</span>' +
-        '<span class="failure-title">' + f.title + '</span>' +
-        '<svg class="failure-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>' +
-      '</div>' +
-      '<div class="failure-detail"><div class="failure-detail-inner">' + f.detail + (f.cite ? '<span class="cite">' + f.cite + '</span>' : '') + '</div></div>';
-
-    var head = el.querySelector('.failure-head');
-    var detail = el.querySelector('.failure-detail');
-    head.addEventListener('click', function(){
-      var isOpen = el.classList.contains('open');
-      failureListEl.querySelectorAll('.failure-item').forEach(function(it){
-        it.classList.remove('open');
-        it.querySelector('.failure-detail').style.maxHeight = null;
-      });
-      if (!isOpen){
-        el.classList.add('open');
-        detail.style.maxHeight = detail.scrollHeight + 'px';
-      }
-    });
-
-    failureListEl.appendChild(el);
-  });
-
-  // ---------- Beat 3: guardrails journey ----------
-  var STATIONS = [
-    {
-      label:'Discover', anchor:'discover',
-      detail:'<strong>You can\'t govern what you can\'t see.</strong> Before policy or controls mean anything, security needs full visibility into what AI is actually running — sanctioned and unsanctioned, chat tools and agents alike — and exactly what data each one can reach. The foundation, not an optional first step.'
-    },
-    {
-      label:'Contain', anchor:'contain',
-      detail:'<strong>Discovery alone stops nothing in the moment.</strong> While longer-term controls are being built, something has to intercept risk as it happens — data mid-paste into a public tool, a file about to leave through an unsanctioned upload.'
-    },
-    {
-      label:'Govern Identity', anchor:'govern-identity',
-      detail:'<strong>Every AI agent is an identity.</strong> Least-privilege access, session-bound credentials instead of standing ones, continuous behavioral monitoring for when something acts outside its normal pattern. Usually the phase organizations are least mature in.'
-    },
-    {
-      label:'Institutionalize', anchor:'institutionalize',
-      detail:'<strong>Tools alone don\'t hold this together.</strong> Somebody owns AI risk as a named accountability. A written acceptable-use policy, and an actual approval path for new AI tools — so the next wave of shadow AI has a sanctioned on-ramp instead of a rule people quietly ignore.'
-    }
-  ];
-
-  var journeyTrack = document.getElementById('journey-track');
-  var journeyDetail = document.getElementById('journey-detail');
-  var journeyLineFill = document.getElementById('journey-line-fill');
-  var exposureBar = document.getElementById('exposure-bar');
-  var exposureLabel = document.getElementById('exposure-label');
-  var activeStations = {};
-
-  var EXPOSURE_LABELS = ['High', 'Elevated', 'Contained', 'Reducing', 'Managed'];
-
-  STATIONS.forEach(function(station, i){
-    var el = document.createElement('div');
-    el.className = 'journey-station';
-    el.innerHTML =
-      '<div class="journey-dot mono">' + (i + 1) + '</div>' +
-      '<div class="journey-station-label">' + station.label + '</div>';
-    el.addEventListener('click', function(){
-      activeStations[i] = !activeStations[i];
-      refreshJourney();
-    });
-    journeyTrack.appendChild(el);
-  });
-
-  function refreshJourney(){
-    var stationEls = journeyTrack.querySelectorAll('.journey-station');
-    var activeCount = 0;
-    var lastActive = -1;
-    STATIONS.forEach(function(_, i){
-      var isActive = !!activeStations[i];
-      stationEls[i].classList.toggle('active', isActive);
-      if (isActive){ activeCount++; lastActive = i; }
-    });
-
-    journeyLineFill.style.width = (activeCount === 0 ? 0 : (lastActive / (STATIONS.length - 1)) * 100) + '%';
-    exposureBar.style.width = (100 - (activeCount / STATIONS.length) * 88) + '%';
-    exposureLabel.textContent = EXPOSURE_LABELS[activeCount];
-
-    if (lastActive >= 0){
-      journeyDetail.innerHTML = '<strong class="display" style="display:block;margin-bottom:8px;color:var(--navy);font-size:15px;">' + STATIONS[lastActive].label + '</strong>' + STATIONS[lastActive].detail +
-        '<a class="detail-link" href="guardrails-detail.html#' + STATIONS[lastActive].anchor + '">Read the full breakdown<svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>';
-    } else {
-      journeyDetail.innerHTML = 'Click a stage above to see why it comes where it does.';
-    }
-  }
-
-  refreshJourney();
-
-  // ---------- Reveal on scroll ----------
-  var sections = document.querySelectorAll('.section, .hero, .closing');
-  sections.forEach(function(s){ s.style.opacity = '0'; s.style.transform = 'translateY(16px)'; s.style.transition = 'opacity .7s ease, transform .7s ease'; });
+  var revealEls = document.querySelectorAll('.hero, .topics');
+  revealEls.forEach(function(s){ s.style.opacity = '0'; s.style.transform = 'translateY(16px)'; s.style.transition = 'opacity .7s ease, transform .7s ease'; });
   if ('IntersectionObserver' in window){
     var observer = new IntersectionObserver(function(entries){
       entries.forEach(function(entry){
@@ -599,14 +227,12 @@
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.08 });
-    sections.forEach(function(s){ observer.observe(s); });
+    }, { threshold: 0.06 });
+    revealEls.forEach(function(s){ observer.observe(s); });
   } else {
-    sections.forEach(function(s){ s.style.opacity = '1'; s.style.transform = 'none'; });
+    revealEls.forEach(function(s){ s.style.opacity = '1'; s.style.transform = 'none'; });
   }
-
 })();
 </script>
-
 </body>
 </html>
