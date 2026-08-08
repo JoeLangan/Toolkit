@@ -176,6 +176,11 @@
 
   /* Beat 3: readiness timeline */
   .readiness{margin-top:48px;}
+  .readiness-today-caption{
+    display:flex;align-items:center;gap:8px;margin-bottom:20px;
+    font-size:12.5px;font-weight:700;color:var(--pink);
+  }
+  .readiness-today-caption .dot{width:8px;height:8px;border-radius:50%;background:var(--pink);flex:none;}
   .readiness-axis-wrap{position:relative;padding-top:34px;margin-bottom:36px;}
   .readiness-axis-line{position:relative;height:2px;background:var(--border);margin:0 6px;}
   .readiness-milestone{position:absolute;top:-30px;transform:translateX(-50%);text-align:center;}
@@ -185,12 +190,10 @@
   .readiness-milestone.passed .readiness-milestone-label{color:var(--gray-blue);}
   .readiness-milestone-days{font-size:10px;color:var(--gray-blue);white-space:nowrap;}
 
-  .readiness-today{position:absolute;top:-6px;transform:translateX(-50%);text-align:center;z-index:2;}
-  .readiness-today .flag{
-    background:var(--pink);color:#fff;font-size:9.5px;font-weight:700;letter-spacing:.05em;
-    padding:2px 8px;border-radius:10px;white-space:nowrap;
+  .readiness-today-tick{
+    position:absolute;top:-8px;width:2px;height:18px;background:var(--pink);
+    transform:translateX(-50%);z-index:2;border-radius:1px;
   }
-  .readiness-today .line{width:2px;height:44px;background:var(--pink);margin:4px auto 0;opacity:.55;}
 
   .readiness-phases{position:relative;height:210px;margin:44px 6px 0;}
   .readiness-phase{
@@ -350,6 +353,7 @@
     <p class="section-intro">Not a checklist — a schedule. Each phase is pinned to the real dates on the CA/Browser Forum's published timetable, with a buffer built in ahead of each cutover. Click a phase to see the detail and where it sits against today's date.</p>
 
     <div class="readiness" id="readiness">
+      <div class="readiness-today-caption"><span class="dot"></span><span id="readiness-today-date"></span></div>
       <div class="readiness-axis-wrap" id="readiness-axis-wrap"></div>
       <div class="readiness-phases" id="readiness-phases"></div>
       <div class="readiness-detail" id="readiness-detail"></div>
@@ -627,11 +631,12 @@
     axisLine.appendChild(el);
   });
 
-  var todayEl = document.createElement('div');
-  todayEl.className = 'readiness-today';
-  todayEl.style.left = pct(now) + '%';
-  todayEl.innerHTML = '<div class="flag">TODAY</div><div class="line"></div>';
-  axisLine.appendChild(todayEl);
+  var todayTick = document.createElement('div');
+  todayTick.className = 'readiness-today-tick';
+  todayTick.style.left = pct(now) + '%';
+  axisLine.appendChild(todayTick);
+
+  document.getElementById('readiness-today-date').textContent = 'Today — ' + fmtDate(now);
 
   var phasesEl = document.getElementById('readiness-phases');
   var detailEl = document.getElementById('readiness-detail');
